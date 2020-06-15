@@ -40,6 +40,7 @@
     'space w': 'core:save'
     'space q': 'core:close'
     'space x': 'custom:save-and-quit'
+    'space d': 'linter-ui-default:toggle-panel'
     # ':': 'vim-mode-plus-ex-mode:open'
 
     # vim-surround
@@ -58,8 +59,9 @@
     'space /': 'vim-mode-plus:toggle-highlight-search'
 
 # not insert mode bindings (normal and visual)
-'atom-text-editor.vim-mode-plus:not(.insert-mode)[data-grammar="source go"]':
-    'g d': 'golang:godef'
+# when gopls and atom-ide setup will not need this anymore
+# 'atom-text-editor.vim-mode-plus:not(.insert-mode)[data-grammar="source go"]':
+#     'g d': 'golang:godef'
 
 # not insert mode bindings (normal and visual)
 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
@@ -83,6 +85,9 @@
     'ctrl-w s': 'pane:split-down-moving-current-tab'
     # merge all panes together again
     'ctrl-w m': 'custom:merge-panes'
+    # navigate between tabs like in vimium
+    'J': 'vim-mode-plus:previous-tab'
+    'K': 'vim-mode-plus:next-tab'
 
     # fix j and k to include soft wrapping
     'j': 'vim-mode-plus:move-down-screen'
@@ -98,7 +103,7 @@
     'g c': 'vim-mode-plus:toggle-line-comments'
 
     # copy, comment, paste selection
-    'g D': 'vim-mode-plus:duplicate-with-comment-out-original'
+    'g C': 'vim-mode-plus:duplicate-with-comment-out-original'
 
     # vim tabs https://atom.io/packages/atom-vim-like-tab
     'space t e': 'atom-vim-like-tab:new' # mean 'tab create'
@@ -116,7 +121,8 @@
     '\\': 'vim-mode-plus:set-register-name-to-_'
 
     # Go to definition keybinding
-    'g d': 'goto-definition:go'
+    'g d': 'hyperclick:confirm-cursor'
+    'g h': 'datatip:toggle'
 
     # Replicate NERDTree bindings
     'space n': 'tree-view:reveal-active-file'
@@ -154,8 +160,7 @@
   'c': 'vim-mode-plus:toggle-line-comments'
 
 'atom-text-editor.vim-mode-plus.operator-pending-mode.duplicate-with-comment-out-original-pending':
-  'D': 'vim-mode-plus:duplicate-with-comment-out-original'
-  'd': 'vim-mode-plus:duplicate-with-comment-out-original'
+  'C': 'vim-mode-plus:duplicate-with-comment-out-original'
 
 # visual mode bindings
 'atom-text-editor.vim-mode-plus.visual-mode':
