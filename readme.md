@@ -4,7 +4,7 @@ This repo is a collection of my Neovim, tmux, zsh and atom configurations. This 
 
 ## Install
 
-1. `git clone https://github.com/nwaywood/dotfiles.git ~/.dotfiles`
+1. `git clone https://github.com/airvin/dotfiles.git ~/.dotfiles`
 1. `cd ~/.dotfiles`
 1. `bash install.sh`
 
@@ -12,7 +12,7 @@ This `install.sh` script will start by installing all symbolic links into your h
 
 Next, the script will check to see if the OS is MacOS. If so, it will install Homebrew (if its not already installed) and will install all the packages listed in `install/brew.sh`. Then, `install/osx.sh` will run and change some OSX configurations. Finally, `zsh` is configured and `oh-my-zsh` is installed.
 
-In `install/` folder there are other scripts for installing `go`, `atom`, and `npm` packages which are not automatated. If you want to install any of these packages, manually run the file (e.g. `bash install/atom.sh`).
+In `install/` folder there are other scripts for installing packages which are not automatated. If you want to install any of these packages, manually run the file (e.g. `bash install/vscode.sh`).
 
 ## Neovim Setup
 
@@ -20,7 +20,7 @@ In `install/` folder there are other scripts for installing `go`, `atom`, and `n
 
 |                         | Vim        | Neovim                    |
 |-------------------------|------------|---------------------------|
-| Main Configuratin File  | `~/.vimrc` | `~/.config/nvim/init.vim` |
+| Main Configuration File  | `~/.vimrc` | `~/.config/nvim/init.vim` |
 | Configuration directory | `~/.vim`   | `~/.config/nvim`          |
 
 Vim is likely already installed on your system. If using a Mac, MacVim will be installed from Homebrew. Neovim will also be installed from Homebrew by default on a Mac. For other systems, you may need to install Neovim manually. See their [web site](https://neovim.io) for more information.
@@ -47,7 +47,7 @@ ZSH is configured in the `zshrc.symlink` file, which will be symlinked to the ho
 
 ## Tmux Setup
 
-Tmux is a terminal multiplexor which lets you create windows and splits in the terminal that you can attach and detach from. I use it to keep multiple projects open in separate windows and sessions and to create an IDE-like environment to work in where I can have my code open in Neovim and a shell open to run tests/scripts. Tmux is configured in ~/.tmux.conf, and in tmux/theme.sh, which defines the colors used, the layout of the tmux bar, and what what will be displayed, including the time and date, open windows, tmux session name, computer name. If not running on macOS, this configuration should be removed.
+Tmux is a terminal multiplexor which lets you create windows and splits in the terminal that you can attach and detach from. I use it to keep multiple projects open in separate windows and sessions. Tmux is configured in ~/.tmux.conf, and in tmux/theme.sh, which defines the colors used, the layout of the tmux bar, and what what will be displayed, including the time and date, open windows, tmux session name, computer name. If not running on macOS, this configuration should be removed.
 
 ### Installation
 
