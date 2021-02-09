@@ -37,4 +37,24 @@ fi
 echo "installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-echo "Done!"
+echo "----------"
+echo "Go to keyboard settings and map caps lock to ctrl"
+echo "----------"
+echo ""
+
+# Apps
+apps=(
+  1Password 
+  BetterTouchTool 
+  Brave
+  Chrome 
+  IntelliJIDEA
+  Slack 
+  SourceTree
+  Signal
+  VSCode
+  Zoom
+)
+
+echo "Also think about installing the following applications:"
+printf '%s\n' "${apps[@]}"
