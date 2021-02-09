@@ -1,12 +1,10 @@
 #### COLOUR
 # https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
 
-tm_color_active='#d19a66' # onedark 'yellow'
-# tm_color_active=colour198 # nisi magenta
+# tm_color_active='#d19a66' # onedark 'yellow'
+ tm_color_active=colour198 # nisi magenta
 tm_color_inactive=colour241 # grey
 tm_color_feature='#61afef' # onedark 'blue'
-tm_color_music='#e06c75' # onedark 'red'
-# tm_color_music=colour203 # red
 # tm_active_border_color=colour198 # nisi magenta
 tm_active_border_color='#d19a66' # onedark 'yellow'
 
@@ -42,11 +40,8 @@ set-option -g display-panes-colour $tm_color_inactive
 # clock
 set-window-option -g clock-mode-colour $tm_color_active
 
-tm_spotify="#[fg=$tm_color_music]#(osascript ~/.dotfiles/tmux/spotify.scpt)"
-
 tm_date="#[fg=$tm_color_inactive] %l:%M%p %d %b"
 tm_host="#[fg=$tm_color_feature,bold]#h"
 tm_session_name="#[fg=$tm_color_feature,bold] #S"
 
 set -g status-left $tm_session_name' '
-set -g status-right $tm_spotify' '$tm_date' '$tm_host

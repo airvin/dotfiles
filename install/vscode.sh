@@ -1,22 +1,18 @@
+# add code command to path
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
 # general 
-code --install-extension alefragnani.project-manager
 code --install-extension dbaeumer.vscode-eslint
-code --install-extension shinnn.stylelint
 
 # theming
-code --install-extension azemoh.one-monokai
 code --install-extension file-icons.file-icons
-code --install-extension robertohuertasm.vscode-icons
-code --install-extension qinjia.seti-icons
-code --install-extension zhuangtongfa.Material-theme
 
 # languages support
-code --install-extension lukehoban.Go
+code --install-extension golang.go
+code --install-extension haskell.haskell
 
 # misc
-code --install-extension flowtype.flow-for-vscode
-code --install-extension jpoissonnier.vscode-styled-components
 code --install-extension vscodevim.vim
-code --install-extension anseki.vscode-color
-code --install-extension prettier-vscode
-# spotify plugin
+code --install-extension esbenp.prettier-vscode
+code --install-extension stkb.rewrap
+code --install-extension bierner.github-markdown-preview

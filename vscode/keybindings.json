@@ -13,7 +13,7 @@
   //     "command": "workbench.action.quickOpen",
   //     "when": "!editorTextFocus && !terminalFocus"
   // },
-  // focus terminal like my Atom binding, unfortunately doesn't defocus
+  // focus terminal, unfortunately doesn't defocus
   {
     "key": "ctrl+alt+j",
     "command": "workbench.action.terminal.focus"

@@ -22,14 +22,6 @@
   "editor.multiCursorModifier": "alt",
   // Controls if file decorations should use badges.
   "explorer.decorations.badges": false,
-  // hide spotify buttons
-  "spotify.showNextButton": false,
-  "spotify.showPreviousButton": false,
-  "spotify.showMuteUnmuteVolumeButton": false,
-  "spotify.showLyricsButton": false,
-  "spotify.showPlayPauseButton": false,
-  "spotify.showSignInButton": false,
-  "spotify.showSignOutButton": false,
   // gitlens
   // -------
   "gitlens.currentLine.enabled": false,
