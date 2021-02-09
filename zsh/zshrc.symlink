@@ -1,7 +1,6 @@
 # NOTE: Uncomment these four lines and comment out zplug lines to get oh-my-zsh back
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
-plugins=(my-vi-mode history-substring-search zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # NOTE: Uncomment these lines to enable zplug and powerlevel10k prompt
@@ -49,8 +48,6 @@ export DOTFILES=$HOME/.dotfiles
 # load .zsh files
 for config ($DOTFILES/zsh/**/*.zsh) source $config
 
-# nix
-source /Users/allirvin/.nix-profile/etc/profile.d/nix.sh
 # editor
 export EDITOR='nvim'
 
@@ -67,19 +64,16 @@ export PATH=$PATH:$GOPATH/bin
 # add brew path to the start of PATH env var
 export PATH=/usr/local/bin:$PATH
 # adding path directory for custom scripts
-export PATH=$DOTFILES/bin:$PATH
+export PATH=$PATH:$DOTFILES/bin
 # add .local to PATH (haskell binaries go here)
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.cabal/bin:$PATH
-export PATH=$HOME/.ghcup/bin:$PATH
-export PATH=$HOME/.emacs.d/bin:$PATH
 # add /usr/local/sbin
 if [[ -d /usr/local/sbin ]]; then
 	export PATH=/usr/local/sbin:$PATH
 fi
 # java
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home
-export PATH=/opt/apache-maven-3.5.0/bin:$PATH
+export PATH=$PATH:/opt/apache-maven-3.5.0/bin
 
 # [ -z "$TMUX" ] && export TERM=xterm-256color
 # for iTerm/tmux/vim use xterm-256color
@@ -88,9 +82,6 @@ export PATH=/opt/apache-maven-3.5.0/bin:$PATH
 # Disable cross tab history in iTerm/zsh
 unsetopt inc_append_history
 unsetopt share_history
-
-# fnm
-eval "$(fnm env --multi)"
 
 # Base16 shell
 if [ -z "$THEME" ]; then
