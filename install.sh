@@ -48,6 +48,7 @@ apps=(
   BetterTouchTool 
   Brave
   Chrome 
+  DockerDesktop
   IntelliJIDEA
   Slack 
   SourceTree

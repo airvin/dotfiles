@@ -13,8 +13,11 @@
 	aa = add -A
 [core]
 	excludesfile = ~/.gitignore_global
+	editor = vim~
 [push]
 	default = simple
+[pull]
+    rebase = false
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 

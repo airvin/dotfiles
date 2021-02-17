@@ -12,6 +12,7 @@ alias g='git'
 
 # misc
 alias c='clear'
+alias cat='bat'
 alias ccat='pygmentize -g'
 alias wiki='nvim +VimwikiIndex'
 alias vimf='nvim "+Denite file_rec"'
@@ -20,7 +21,6 @@ alias find='find . -name'
 alias ls="exa"
 alias la="exa -a"
 alias ll="exa -la"
-# alias vimg='open -a emacs'
 
 mkcd () {
     test -d "$1" || mkdir "$1" && cd "$1"

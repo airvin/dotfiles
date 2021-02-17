@@ -1,6 +1,6 @@
 # NOTE: Uncomment these four lines and comment out zplug lines to get oh-my-zsh back
 export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="robbyrussell"
+ZSH_THEME="avit"
 source $ZSH/oh-my-zsh.sh
 
 # NOTE: Uncomment these lines to enable zplug and powerlevel10k prompt
@@ -67,12 +67,15 @@ export PATH=/usr/local/bin:$PATH
 export PATH=$PATH:$DOTFILES/bin
 # add .local to PATH (haskell binaries go here)
 export PATH=$HOME/.local/bin:$PATH
+# add Rust's cargo to the path
+export PATH=$PATH:$HOME/.cargo/bin
 # add /usr/local/sbin
 if [[ -d /usr/local/sbin ]]; then
 	export PATH=/usr/local/sbin:$PATH
 fi
 # java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-8.jdk/Contents/Home
 export PATH=$PATH:/opt/apache-maven-3.5.0/bin
 
 # [ -z "$TMUX" ] && export TERM=xterm-256color
@@ -90,10 +93,6 @@ fi
 if [ -z "$BACKGROUND" ]; then
 	export BACKGROUND="dark"
 fi
-
-# commented out while I'm trying 'true' solarized instead of base16 version
-# BASE16_SHELL="$DOTFILES/.config/base16-shell/$THEME.$BACKGROUND.sh"
-# source $BASE16_SHELL
 
 # required to make z command work
 if hash brew 2>/dev/null; then

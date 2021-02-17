@@ -10,6 +10,7 @@ code --install-extension file-icons.file-icons
 # languages support
 code --install-extension golang.go
 code --install-extension haskell.haskell
+code --install-extension zxh404.vscode-proto3
 
 # misc
 code --install-extension vscodevim.vim
