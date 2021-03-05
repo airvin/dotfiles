@@ -55,6 +55,10 @@ export EDITOR='nvim'
 export NNN_PLUG='f:fzcd;o:fzopen;z:fzfz'
 export NNN_BMS='d:~/Downloads'
 
+# n 
+export N_PREFIX=$HOME/.n
+export PATH=$N_PREFIX/bin:$PATH
+
 # PATH
 # ====
 
@@ -142,3 +146,19 @@ bindkey -s "^[Ok" "+"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Oj" "*"
 bindkey -s "^[Oo" "/"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/allirvin/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/allirvin/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/allirvin/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/allirvin/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
