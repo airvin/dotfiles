@@ -101,6 +101,10 @@ bind - split-window -v -c "#{pane_current_path}"
 bind-key & kill-window
 bind-key x kill-pane
 
+# move window left or right
+bind-key -n C-S-Left swap-window -t -1\; select-window -t -1
+bind-key -n C-S-Right swap-window -t +1\; select-window -t +1
+
 # Fix window names
 # http://stackoverflow.com/questions/6041178/keep-the-windows-name-fixed-in-tmux
 set-option -g allow-rename off
