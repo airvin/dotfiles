@@ -1,5 +1,6 @@
 aliases-local.zsh
 settings-local.zsh
+local.zsh
 .config
 .netrwhist
 

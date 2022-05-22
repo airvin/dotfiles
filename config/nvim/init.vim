@@ -32,7 +32,6 @@ Plug 'tmux-plugins/vim-tmux-focus-events' " make Focus autocmds work in tmux
 Plug 'jeffkreeftmeijer/vim-numbertoggle' " relative/absolute line number management
 Plug 'szw/vim-maximizer' " toggle windows fullscreen
 Plug 'google/vim-searchindex' " shows number of matches for search commands
-Plug 'mhinz/vim-sayonara' " Alternative to :quit which works like modern editors
 Plug 'sickill/vim-pasta' " Context aware pasting (e.g. current indentation)
 Plug 'unblevable/quick-scope' " Improve usability of f,F,t,T
 Plug 'tpope/vim-fugitive' " Git support
