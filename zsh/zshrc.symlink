@@ -1,6 +1,7 @@
 # NOTE: Uncomment these four lines and comment out zplug lines to get oh-my-zsh back
 export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="avit"
+ZSH_THEME="robbyrussell"
+plugins=(git vi-mode history-substring-search)
 source $ZSH/oh-my-zsh.sh
 
 # NOTE: Uncomment these lines to enable zplug and powerlevel10k prompt
@@ -51,20 +52,13 @@ for config ($DOTFILES/zsh/**/*.zsh) source $config
 # editor
 export EDITOR='nvim'
 
-# nnn
-export NNN_PLUG='f:fzcd;o:fzopen;z:fzfz'
-export NNN_BMS='d:~/Downloads'
-
+set -o vi
 # n 
 export N_PREFIX=$HOME/.n
 export PATH=$N_PREFIX/bin:$PATH
 
 # PATH
 # ====
-
-# GOPATH
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
 # add brew path to the start of PATH env var
 export PATH=/usr/local/bin:$PATH
 # adding path directory for custom scripts
@@ -79,8 +73,17 @@ if [[ -d /usr/local/sbin ]]; then
 fi
 # java
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-8.jdk/Contents/Home
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-8.jdk/Contents/Home
+export JAVA_HOME="/usr/local/opt/openjdk@11"
 export PATH=$PATH:/opt/apache-maven-3.5.0/bin
+# jq-sh
+export PATH="$HOME/Code/github.com/jq-sh/jq-sh/bin:$PATH"
+
+# code command for VSCode
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+# ruby
+eval "$(rbenv init -)"
 
 # [ -z "$TMUX" ] && export TERM=xterm-256color
 # for iTerm/tmux/vim use xterm-256color
@@ -90,18 +93,10 @@ export PATH=$PATH:/opt/apache-maven-3.5.0/bin
 unsetopt inc_append_history
 unsetopt share_history
 
-# Base16 shell
-if [ -z "$THEME" ]; then
-	export THEME="base16-solarized-dark"
-fi
-if [ -z "$BACKGROUND" ]; then
-	export BACKGROUND="dark"
-fi
-
 # required to make z command work
-if hash brew 2>/dev/null; then
-	source `brew --prefix`/etc/profile.d/z.sh
-fi
+#if hash brew 2>/dev/null; then
+#	source `brew --prefix`/etc/profile.d/z.sh
+#fi
 
 source ~/.config/up/up.sh
 
@@ -115,12 +110,12 @@ export FZF_TMUX=1
 # https://github.com/junegunn/fzf/issues/986
 command -v blsd > /dev/null && export FZF_ALT_C_COMMAND='blsd'
 # https://github.com/junegunn/fzf/wiki/examples#z
-unalias z 2> /dev/null
-z() {
-	[ $# -gt 0 ] && _z "$*" && return
-	# remove --inline-info fzf option so that number of results displays on newline
-	cd "$(_z -l 2>&1 | fzf-tmux --height 40% --reverse +s --tac --query "$*" | sed 's/^[0-9,.]* *//')"
-}
+#unalias z 2> /dev/null
+#z() {
+#	[ $# -gt 0 ] && _z "$*" && return
+#	# remove --inline-info fzf option so that number of results displays on newline
+#	cd "$(_z -l 2>&1 | fzf-tmux --height 40% --reverse +s --tac --query "$*" | sed 's/^[0-9,.]* *//')"
+#}
 
 # http://superuser.com/questions/565178/how-do-i-get-the-numpad-to-work-in-vim-using-iterm2-on-osx-with-term-xterm
 # OR
@@ -161,4 +156,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
