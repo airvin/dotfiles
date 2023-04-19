@@ -75,15 +75,21 @@ fi
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-8.jdk/Contents/Home
 export JAVA_HOME="/usr/local/opt/openjdk@11"
+export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
 export PATH=$PATH:/opt/apache-maven-3.5.0/bin
 # jq-sh
-export PATH="$HOME/Code/github.com/jq-sh/jq-sh/bin:$PATH"
+# export PATH="$HOME/Code/github.com/jq-sh/jq-sh/bin:$PATH"
 
 # code command for VSCode
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # ruby
 eval "$(rbenv init -)"
+
+# python 
+export PYENV_ROOT=$HOME/.pyenv
+export PATH="$PATH:$PYENV_ROOT/bin"
+eval "$(pyenv init -)"
 
 # [ -z "$TMUX" ] && export TERM=xterm-256color
 # for iTerm/tmux/vim use xterm-256color

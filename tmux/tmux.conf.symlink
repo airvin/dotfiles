@@ -51,7 +51,7 @@ set -g pane-base-index 1
 # Mouse support for pane/window switching
 # NOTE: This breaks selectiong/copying text on OSX
 # To select text as expected, hold Option to disable it (iTerm2)
-setw -g mouse on
+set -g mouse on
 
 # Keybinds
 # ========
@@ -124,6 +124,10 @@ source ~/.dotfiles/tmux/theme.sh
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
+
+# https://www.seanh.cc/2020/12/27/copy-and-paste-in-tmux/
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @yank_action 'copy-pipe-no-clear'
 
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @resurrect-capture-pane-contents 'on'
