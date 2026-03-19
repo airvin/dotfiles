@@ -11,11 +11,15 @@ source install/link.sh
 if [ "$(uname)" == "Darwin" ]; then
 	echo -e "\n\nRunning on OSX"
 
-	echo "Setting up osx settings"
-	source install/osx.sh
+  echo "Setting up osx settings"
+  source install/osx.sh
 
-	echo "Brewing all the things"
-	source install/brew.sh
+  echo "Brewing all the things (using Brewfile)"
+  if command -v brew >/dev/null 2>&1; then
+      brew bundle --file="$DOTFILES/install/Brewfile"
+  else
+      echo "Homebrew not found — skipping Brewfile step. Install Homebrew from https://brew.sh/ and re-run."
+  fi
 fi
 
 echo "Adding base16-shell project into .config"

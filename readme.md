@@ -18,8 +18,8 @@ will be symlinked as `~/.zshrc`. Then, all files in the `$DOTFILES/config` direc
 specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html), such as Neovim.
 
 Next, the script will check if the operating system is MacOS. If so, it will run `install/osx.sh` to change some OSX
-configurations. Then it will install Homebrew (if not already installed) and will install all the packages listed in
-`install/brew.sh`. Finally, `zsh` is configured and `oh-my-zsh` is installed.
+configurations. Then it will install Homebrew (if not already installed) and will install packages listed in
+`install/Brewfile` using `brew bundle`. Finally, `zsh` is configured and `oh-my-zsh` is installed.
 
 There are other scripts in the `install` folder for installing packages which are not automated. To install
 any of these packages, manually run the file (e.g. `bash install/vscode.sh`).

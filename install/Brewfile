@@ -1,0 +1,56 @@
+tap "homebrew/cask"
+
+# Core development tools
+brew "git"
+brew "tmux"
+brew "zsh"
+brew "coreutils"
+brew "watch"
+brew "autoconf"
+brew "automake"
+brew "libtool"
+
+# Docker / virtualization
+brew "docker"
+brew "docker-compose"
+brew "minikube"
+
+# Languages / runtimes
+brew "elm"
+brew "haskell-stack"
+brew "node"
+brew "openjdk@8"
+brew "python"
+brew "pyenv"
+brew "rbenv"
+brew "rustup-init"
+
+# CLI tools
+brew "z"                  # directory jumper: quickly cd to frequently used directories
+brew "fzf"                # fuzzy finder for interactive selection (files, history, etc.)
+brew "tree"               # visual directory tree listing
+brew "jq"                 # JSON processor for the shell
+brew "gettext"            # GNU gettext utilities (i18n tools, msgfmt/xgettext)
+brew "fd"                 # fast, user-friendly alternative to 'find'
+brew "eza"                # modern replacement for 'ls' with colors and git info
+brew "bat"                # 'cat' clone with syntax highlighting and git integration
+brew "the_silver_searcher" # fast code-searching tool (ag)
+brew "ripgrep"            # very fast recursive searcher (rg)
+
+# Neovim
+brew "neovim"
+
+# GUI apps (casks)
+cask "1password"
+cask "bettertouchtool"
+cask "brave-browser"
+cask "google-chrome"
+cask "docker"
+cask "intellij-idea"
+cask "slack"
+cask "sourcetree"
+cask "signal"
+cask "visual-studio-code"
+cask "zoom"
+
+# macOS App Store apps could be added via `mas` entries
