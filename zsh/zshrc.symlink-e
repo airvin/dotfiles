@@ -74,14 +74,9 @@ fi
 # java
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-8.jdk/Contents/Home
-# export JAVA_HOME="/usr/local/opt/openjdk@11"
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
-# export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
-export PATH="/Library/Java/JavaVirtualMachines/openjdk.jdk:$PATH"
+export JAVA_HOME="/usr/local/opt/openjdk@11"
+export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
 export PATH=$PATH:/opt/apache-maven-3.5.0/bin
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
 # jq-sh
 # export PATH="$HOME/Code/github.com/jq-sh/jq-sh/bin:$PATH"
 
@@ -167,14 +162,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-[ -f "/Users/allisonirvin/.ghcup/env" ] && source "/Users/allisonirvin/.ghcup/env" # ghcup-env
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/allisonirvin/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
