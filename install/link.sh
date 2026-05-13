@@ -1,34 +1,38 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-DOTFILES=$HOME/.dotfiles
+set -euo pipefail
 
-echo -e "\nCreating symlinks"
+DOTFILES="${HOME}/.dotfiles"
+
+echo
+echo "Creating symlinks"
 echo "=============================="
-linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
-for file in $linkables ; do
-	target="$HOME/.$( basename $file ".symlink" )"
-	if [ -e $target ]; then
+while IFS= read -r -d '' file; do
+	target="${HOME}/.$(basename "$file" ".symlink")"
+	if [[ -e "$target" || -L "$target" ]]; then
 		echo "~${target#$HOME} already exists... Skipping."
 	else
 		echo "Creating symlink for $file"
-		ln -s $file $target
+		ln -s "$file" "$target"
 	fi
-done
+done < <(find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' -print0)
 
-echo -e "\n\ninstalling to ~/.config"
+echo
+echo "installing to ~/.config"
 echo "=============================="
-if [ ! -d $HOME/.config ]; then
+if [[ ! -d "${HOME}/.config" ]]; then
 	echo "Creating ~/.config"
-	mkdir -p $HOME/.config
+	mkdir -p "${HOME}/.config"
 fi
 # configs=$( find -path "$DOTFILES/config.symlink" -maxdepth 1 )
-for config in $DOTFILES/config/*; do
-	target=$HOME/.config/$( basename $config )
-	if [ -e $target ]; then
+for config in "$DOTFILES"/config/*; do
+	[[ -e "$config" || -L "$config" ]] || continue
+	target="${HOME}/.config/$(basename "$config")"
+	if [[ -e "$target" || -L "$target" ]]; then
 		echo "~${target#$HOME} already exists... Skipping."
 	else
 		echo "Creating symlink for $config"
-		ln -s $config $target
+		ln -s "$config" "$target"
 	fi
 done
 

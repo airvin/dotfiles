@@ -1,44 +1,10 @@
-# NOTE: Uncomment these four lines and comment out zplug lines to get oh-my-zsh back
+# Shell prompt and plugins
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 plugins=(git vi-mode history-substring-search)
 source $ZSH/oh-my-zsh.sh
 
-# NOTE: Uncomment these lines to enable zplug and powerlevel10k prompt
-# # Current issues: Up and down keys don't do history-substring-search 
-# # and git info sometimes disappears from prompt? (git fetch)
-# # load zplug
-# export ZPLUG_HOME=$HOME/.zplug
-# source $ZPLUG_HOME/init.zsh
-
-# zplug "zsh-users/zsh-syntax-highlighting", defer:2
-# zplug "zsh-users/zsh-history-substring-search"
-# # zplug "romkatv/powerlevel10k", as:theme, depth:1
-# zplug mafredri/zsh-async, from:github
-# zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
-
-# # Install plugins if there are plugins that have not been installed
-# if ! zplug check --verbose; then
-#     printf "Install? [y/N]: "
-#     if read -q; then
-#         echo; zplug install
-#     fi
-# fi
-
-# # Then, source plugins and add commands to $PATH
-# zplug load
-
-# # END zplug
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# customize vi mode
-# ==============
-# enable vi mode (when using oh-my-zsh, vi-mode plugin enabling it)
-# bindkey -v
-# map jk to enter normal mode in zsh
-# https://dougblack.io/words/zsh-vi-mode.html
+# VI mode key bindings
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
@@ -46,135 +12,31 @@ bindkey -M vicmd 'j' history-substring-search-down
 # User configuration
 export DOTFILES=$HOME/.dotfiles
 
-# load .zsh files
+# Load .zsh files
 for config ($DOTFILES/zsh/**/*.zsh) source $config
 
-# editor
+# Editor
 export EDITOR='nvim'
-
 set -o vi
-# n 
-export N_PREFIX=$HOME/.n
-export PATH=$N_PREFIX/bin:$PATH
 
-# PATH
-# ====
-# add brew path to the start of PATH env var
-export PATH=/usr/local/bin:$PATH
-# adding path directory for custom scripts
-export PATH=$PATH:$DOTFILES/bin
-# add .local to PATH (haskell binaries go here)
-export PATH=$HOME/.local/bin:$PATH
-# add Rust's cargo to the path
-export PATH=$PATH:$HOME/.cargo/bin
-# add /usr/local/sbin
-if [[ -d /usr/local/sbin ]]; then
-	export PATH=/usr/local/sbin:$PATH
-fi
-# java
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-8.jdk/Contents/Home
-# export JAVA_HOME="/usr/local/opt/openjdk@11"
+# PATH Configuration
+export PATH=/usr/local/bin:$PATH  # Homebrew
+export PATH=$PATH:$DOTFILES/bin   # Custom scripts
+export PATH=$PATH:/usr/local/sbin
+
+# Java (for IntelliJ development)
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
-# export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
-export PATH="/Library/Java/JavaVirtualMachines/openjdk.jdk:$PATH"
-export PATH=$PATH:/opt/apache-maven-3.5.0/bin
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
 
-# jq-sh
-# export PATH="$HOME/Code/github.com/jq-sh/jq-sh/bin:$PATH"
-
-# code command for VSCode
+# VSCode command line
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
-# ruby
-eval "$(rbenv init -)"
-
-# python 
-export PYENV_ROOT=$HOME/.pyenv
-export PATH="$PATH:$PYENV_ROOT/bin"
-eval "$(pyenv init -)"
-
-# [ -z "$TMUX" ] && export TERM=xterm-256color
-# for iTerm/tmux/vim use xterm-256color
-
-# http://apple.stackexchange.com/questions/75571/the-history-is-shared-between-my-iterm2-terminal-tabs-how-can-i-switch-that-off
-# Disable cross tab history in iTerm/zsh
+# Disable shared history between tabs
 unsetopt inc_append_history
 unsetopt share_history
 
-# required to make z command work
-#if hash brew 2>/dev/null; then
-#	source `brew --prefix`/etc/profile.d/z.sh
-#fi
-
-source ~/.config/up/up.sh
-
-# load fzf
+# FZF configuration
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--inline-info --cycle"
 export FZF_TMUX=1
-# https://github.com/junegunn/fzf/issues/986
-command -v blsd > /dev/null && export FZF_ALT_C_COMMAND='blsd'
-# https://github.com/junegunn/fzf/wiki/examples#z
-#unalias z 2> /dev/null
-#z() {
-#	[ $# -gt 0 ] && _z "$*" && return
-#	# remove --inline-info fzf option so that number of results displays on newline
-#	cd "$(_z -l 2>&1 | fzf-tmux --height 40% --reverse +s --tac --query "$*" | sed 's/^[0-9,.]* *//')"
-#}
-
-# http://superuser.com/questions/565178/how-do-i-get-the-numpad-to-work-in-vim-using-iterm2-on-osx-with-term-xterm
-# OR
-# http://superuser.com/questions/742171/zsh-z-shell-numpad-numlock-doesnt-work
-# 0 . Enter
-bindkey -s "^[Op" "0"
-bindkey -s "^[On" "."
-bindkey -s "^[OM" "^M" # fix the enter key on the numpad
-# 1 2 3
-bindkey -s "^[Oq" "1"
-bindkey -s "^[Or" "2"
-bindkey -s "^[Os" "3"
-# 4 5 6
-bindkey -s "^[Ot" "4"
-bindkey -s "^[Ou" "5"
-bindkey -s "^[Ov" "6"
-# 7 8 9
-bindkey -s "^[Ow" "7"
-bindkey -s "^[Ox" "8"
-bindkey -s "^[Oy" "9"
-# + -  * /
-bindkey -s "^[Ok" "+"
-bindkey -s "^[Om" "-"
-bindkey -s "^[Oj" "*"
-bindkey -s "^[Oo" "/"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/allirvin/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/allirvin/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/allirvin/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/allirvin/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-[ -f "/Users/allisonirvin/.ghcup/env" ] && source "/Users/allisonirvin/.ghcup/env" # ghcup-env
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/allisonirvin/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions

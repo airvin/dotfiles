@@ -1,85 +1,156 @@
-# Dotfiles
+# Dotfiles - Minimal Setup
 
-This repo is a collection of Neovim, tmux, zsh and VS Code configurations. This dotfile project is heavily inspired
-by the dotfile projects of [Nick Nisi](https://github.com/nicknisi/dotfiles) and [Nick
-Waywood](https://github.com/nwaywood/dotfiles). See Nick Nisi's talk [vim + tmux -
-OMG!](https://www.youtube.com/watch?v=5r6yzFEXajQ) to be inspired.
+A minimal dotfiles collection optimised for development with IntelliJ IDEA and VS Code, with Neovim available for quick terminal editing.
 
-## Install
+## Quick Start
 
-1. `git clone https://github.com/airvin/dotfiles.git ~/.dotfiles`
-1. `cd ~/.dotfiles`
-1. `bash install.sh`
+```bash
+git clone https://github.com/airvin/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+bash install.sh
+```
 
-This `install.sh` script will start by installing all symbolic links into the home directory. Every file with a
-`.symlink` extension will be symlinked to the home directory with a `.` in front of it. As an example, `zshrc.symlink`
-will be symlinked as `~/.zshrc`. Then, all files in the `$DOTFILES/config` directory will be symlinked to the
-`~/.config/` directory for applications that follow the [XDG based directory
-specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html), such as Neovim.
+The install script will:
+1. Create symlinks for configuration files
+2. Apply macOS system settings (keyboard speed, dock auto-hide)
+3. Install packages via Homebrew
 
-Next, the script will check if the operating system is MacOS. If so, it will run `install/osx.sh` to change some OSX
-configurations. Then it will install Homebrew (if not already installed) and will install packages listed in
-`install/Brewfile` using `brew bundle`. Finally, `zsh` is configured and `oh-my-zsh` is installed.
+## What's Included
 
-There are other scripts in the `install` folder for installing packages which are not automated. To install
-any of these packages, manually run the file (e.g. `bash install/vscode.sh`).
+### Shell (ZSH)
+- **oh-my-zsh** with essential plugins: git, vi-mode, history-substring-search
+- Vi keybindings with `jk` to escape insert mode
+- FZF for fuzzy file/history search
+- Minimal PATH configuration for Node.js and Java development
 
-## Neovim Setup
+### Editor: Neovim
+- **Purpose**: Quick terminal-based file editing (not the primary editor)
+- **Color theme**: OneDark
+- **Essential plugins**: FZF (fuzzy search), Fugitive (git), tmux integration
+- **Space leader key** with intuitive bindings for common tasks
 
-[Neovim](https://neovim.io/) is a fork and drop-in replacement for vim. In most cases, the difference is not noticable
-other than Neovim allows plugins to run asynchronously so that they do not freeze the editor. Vim and Neovim both use
-Vimscript and most plugins will work in both. For this reason, they share the same configuration files in this setup.
-Neovim uses the [XDG base directory
-specification](http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html) which means it won't look for a
-`.vimrc` in the home directory. Instead, its configuration looks like the following:
+### Terminal Multiplexer: Tmux
+- Pre-configured with sensible keybindings
+- Vim-tmux navigation integration (Ctrl+hjkl)
+- Plugin persistence (tmux-resurrect, tmux-continuum)
+- Includes `bin/tm` helper to pick an existing tmux session or create a new one
 
-|                         | Vim        | Neovim                    |
-|-------------------------|------------|---------------------------|
-| Main configuration file | `~/.vimrc` | `~/.config/nvim/init.vim` |
-| Configuration directory | `~/.vim`   | `~/.config/nvim`          |
+Use the tmux helper:
+1. Run `tm`
+2. Pick a session from the menu or choose "New Session"
+3. The script will attach/create and replace the current shell process
 
-Vim comes installed on most systems. Neovim will also be installed from Homebrew by default on Mac. For other systems,
-Neovim may need to be installed manually. See the [Neovim website](https://neovim.io) for more information.
+Install tmux plugins:
+1. Start tmux (`tm` or `tmux new`)
+2. Press `Ctrl+B` then `I` (capital i) to install plugins via tpm
+3. Plugins (tmux-yank, tmux-resurrect, tmux-continuum) will download automatically
 
-[`link.sh`](install/link.sh) will symlink the XDG configuration directory into the home directory. Inside of
-[`.zshrc`](zsh/zshrc.symlink), the `EDITOR` shell variable is set to `nvim`, defaulting to Neovim for editor tasks, such
-as git commit messages. Additionally, `vim` has been aliased to `nvim` in [`aliases.zsh`](zsh/aliases.zsh).
+### VS Code
+- Minimal settings focused on core development
+- Optional Vim extension support
+- Prettier for code formatting
+- Basic keybindings for split/terminal management
 
-### Plugin Installation
+### Git Configuration
+**Note**: Git config is not auto-symlinked. If you have an existing `~/.gitconfig`, you can manually add useful config from `gitconfig.example`.
 
-Neovim plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug). To install plugins, run:
+The dotfiles also symlink [git/gitignore_global.symlink](git/gitignore_global.symlink) as `~/.gitignore_global` for global gitignore rules.
 
-`nvim +PlugInstall`
+### Package Management
+- **CLI Tools**: fzf, ripgrep, fd, bat, eza, jq
 
-## ZSH Setup
+## Important Notes
 
-ZSH is configured in the `zshrc.symlink` file, which will be symlinked to the home directory. The following occurs in
-this file:
+### Language Support
+This setup is optimised for **JavaScript/Node.js** and **Java** development. Other language runtimes (Python, Ruby, Go, Rust, Haskell) have been removed. To add support for other languages:
+- Update `install/Brewfile` with needed runtimes
+- Add appropriate PATH configurations to `zsh/zshrc.symlink`
 
-- set the EDITOR to nvim
-- Recursively search the `$DOTFILES/zsh` directory for files ending in `.zsh` and source them
-- Setup `oh-my-zsh` and install plugins
-- Add the `~/bin` and `$DOTFILES/bin` directories to the path
-- And more...
+### macOS Settings
+The `install/osx.sh` script applies these settings:
+- Keyboard repeat rate and initial delay (fast typing experience)
+- Dock auto-hide with 0.5s delay
+- Disable workspace animation
 
-To change the theme of the terminal prompt, change the `ZSH_THEME` in `zsh/zshrc.symlink`. To use a custom theme, place
-it in `~/.oh-my-zsh/custom/themes`. An example custom theme from [Nick Waywood](https://github.com/nwaywood/dotfiles) is
-in `oh-my-zsh/custom/themes`.
+To modify these, edit `install/osx.sh` before running install.sh.
 
-## Tmux Setup
+### Neovim Plugins
+To install Neovim plugins after setup:
+```bash
+nvim +PlugInstall
+```
 
-Tmux is a terminal multiplexor which allows multiple windows and splits in the terminal. It can be used to save multiple
-project layouts in separate sessions. Tmux is configured in `~/.tmux.conf` (symlinked from `tmux/tmux.conf.symlink`),
-and in `tmux/theme.sh`, which defines the colors used, the layout of the tmux bar, and what what will be displayed,
-including the time and date, open windows, tmux session name, computer name. If not running on macOS, this configuration
-should be removed.
+Current plugins include:
+- Color scheme (OneDark)
+- Fuzzy finder (FZF)
+- Git integration (Fugitive)
+- Text manipulation (surround, commentary, unimpaired)
+- Tmux navigation
 
-### Plugin Installation
+### Custom Scripts
+Scripts in `bin/` directory are added to PATH:
+- `tm` - Smart tmux session manager (pick existing or create new)
 
-Tmux plugins are managed with [tpm](https://github.com/tmux-plugins/tpm). To install plugins, run:
+## Typical Workflow
 
-`<prefix> - I`
+1. **Development**: IntelliJ IDEA or VS Code
+2. **Terminal**: Tmux with ZSH for command line work
+3. **Quick edits**: Neovim in terminal (`:` key in tmux to edit files)
+4. **File navigation**: FZF (`Ctrl+T` in shell or `<leader>f` in Neovim)
+5. **Git operations**: Git aliases or integrations in IDE
 
-from within tmux. This installs the `tmux-resurrect` plugin which lets tmux sessions/windows/panes be persisted across
-OS reboots. `prefix - ^s` to save the tmux environment and `prefix - ^r` to restore the tmux environent.
+## File Structure
+
+```
+.dotfiles/
+├── install.sh              # Main installation script
+├── install/
+│   ├── link.sh            # Create symlinks
+│   ├── osx.sh             # macOS system settings
+│   └── Brewfile           # Homebrew packages
+│   └── vscode.sh          # VS Code extensions
+├── zsh/
+│   ├── zshrc.symlink      # Main shell configuration
+│   └── aliases.zsh        # Command aliases
+├── nvim/
+│   └── init.vim           # Neovim configuration
+├── tmux/tmux.conf.symlink # Tmux configuration
+├── git/gitconfig.example  # Git aliases (manual setup)
+└── vscode/                # VS Code settings
+```
+
+## Customisation
+
+Edit configuration files directly:
+- **Shell aliases**: [zsh/aliases.zsh](zsh/aliases.zsh)
+- **Neovim settings**: [config/nvim/init.vim](config/nvim/init.vim)
+- **Git aliases**: Manually add from [git/gitconfig.example](git/gitconfig.example) to your `~/.gitconfig`
+- **VSCode settings**: [vscode/settings.json](vscode/settings.json)
+- **Packages**: [install/Brewfile](install/Brewfile)
+
+After modifications, reload configurations:
+```bash
+# Shell
+source ~/.zshrc
+
+# Neovim (inside Neovim)
+:source ~/.config/nvim/init.vim
+
+# Git
+git config --list
+```
+
+## Keyboard Shortcuts (Neovim)
+
+| Binding | Action |
+|---------|--------|
+| `jk` | Exit insert mode |
+| `<Space>f` | Find files |
+| `<Space>b` | List buffers |
+| `<Space>a` | Grep project |
+| `gd` | Go to definition |
+| `gr` | Find references |
+| `<Space>gs` | Git status |
+| `<Space>w` | Save file |
+| `K` | Show documentation |
 

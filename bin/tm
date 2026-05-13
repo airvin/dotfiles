@@ -1,29 +1,43 @@
-#!/bin/sh
-# export PATH=$PATH:/usr/local/bin
+#!/usr/bin/env bash
 
-# abort if we're already inside a TMUX session
-[ "$TMUX" == "" ] || exit 0
+# Exit if already inside tmux.
+[[ -n "${TMUX:-}" ]] && exit 0
 
-# present menu for user to choose which workspace to open
+if ! command -v tmux >/dev/null 2>&1; then
+    echo "tmux is not installed"
+    exit 1
+fi
+
+# Gather existing session names. Suppress errors when no sessions exist.
+sessions=()
+while IFS= read -r session; do
+    [[ -n "$session" ]] && sessions+=("$session")
+done < <(tmux list-sessions -F '#S' 2>/dev/null || true)
+
 PS3="Please choose your session: "
-options=($(tmux list-sessions -F "#S") "New Session" "zsh")
+options=("${sessions[@]}" "New Session")
+
 echo "Available sessions"
 echo "------------------"
 echo " "
-select opt in "${options[@]}"
-do
-    case $opt in
+
+select opt in "${options[@]}"; do
+    if [[ -z "${opt:-}" ]]; then
+        echo "Invalid selection"
+        continue
+    fi
+
+    case "$opt" in
         "New Session")
-            read -p "Enter new session name: " SESSION_NAME
-            tmux new -s "$SESSION_NAME"
-            break
+            read -r -p "Enter new session name: " SESSION_NAME
+            if [[ -z "${SESSION_NAME:-}" ]]; then
+                echo "Session name cannot be empty"
+                continue
+            fi
+            exec tmux new -s "$SESSION_NAME"
             ;;
-        "zsh")
-            zsh --login
-            break;;
         *)
-            tmux attach-session -t $opt
-            break
+            exec tmux attach-session -t "$opt"
             ;;
     esac
 done

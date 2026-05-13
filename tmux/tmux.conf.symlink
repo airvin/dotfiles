@@ -1,8 +1,6 @@
 # General
 # =======
 
-# set -g default-command "login-shell"
-#set -g default-command "reattach-to-user-namespace -l zsh"
 
 # Need for theme https://github.com/rakr/vim-one#tmux-support
 # Add truecolor support
@@ -22,7 +20,7 @@ unbind C-b
 set -g prefix C-a
 bind C-a send-prefix
 
-# https://github.com/tmux-plugins/vim-tmux-focus-events
+# Tell tmux when a pane/terminal gains or loses keyboard focus
 set -g focus-events on
 
 # Rather than constraining window size to the maximum size of any client
@@ -30,18 +28,20 @@ set -g focus-events on
 # client connected to *that window*. Much more reasonable.
 setw -g aggressive-resize on
 
-# nvim wants to option set
+# Wait only 10ms after Esc before deciding it was just Esc and not a sequence
 set-option -sg escape-time 10
 
-# use vim shortcuts for copy mode
+# Vi-style copy mode
 setw -g mode-keys vi
-# more settings to make copy-mode more vim-like
+# Enter copy mode with Escape
 bind Escape copy-mode
-# bind to P instead of p because p navigates to previous window
-bind P paste-buffer
+# Start selection with v
 bind -Tcopy-mode-vi 'v' send -X begin-selection
-bind -Tcopy-mode-vi 'y' send -X copy-pipe-and-cancel "tmux save-buffer - | reattach-to-user-namespace pbcopy"
+# Yank with y and send to macOS clipboard
+# Paste with Prefix + P instead of p because p navigates to previous window
+bind P paste-buffer
 
+# Use Vim-style keys in the status line command prompt/editing mode
 set-option -g status-keys vi
 
 # Index start for panes and windows
@@ -49,11 +49,11 @@ set -g base-index 1
 set -g pane-base-index 1
 
 # Mouse support for pane/window switching
-# NOTE: This breaks selectiong/copying text on OSX
+# NOTE: This breaks selection/copying text on OSX
 # To select text as expected, hold Option to disable it (iTerm2)
 set -g mouse on
 
-# Keybinds
+# Keybindings
 # ========
 
 # Reload config file

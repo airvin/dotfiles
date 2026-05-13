@@ -1,19 +1,5 @@
 [
-  // Place your key bindings in this file to overwrite the defaults
-  // toggle sidebar when editor is not focused
-  // (vim plugin handles editor focused case)
-  // TODO: get these working
-  //   {
-  //     "key": "space e",
-  //     "command": "workbench.action.toggleSidebarVisibility",
-  //     "when": "!editorTextFocus && !terminalFocus && !inQuickOpen"
-  //   },
-  // {
-  //     "key": "space f",
-  //     "command": "workbench.action.quickOpen",
-  //     "when": "!editorTextFocus && !terminalFocus"
-  // },
-  // focus terminal, unfortunately doesn't defocus
+  // Terminal focus
   {
     "key": "ctrl+alt+j",
     "command": "workbench.action.terminal.focus"
@@ -22,7 +8,7 @@
     "key": "ctrl+alt+k",
     "command": "workbench.action.terminal.focus"
   },
-  // create vertical split
+  // Create vertical split
   {
     "key": "ctrl+v",
     "command": "workbench.action.splitEditor",
@@ -34,7 +20,7 @@
     "command": "workbench.action.splitEditorOrthogonal",
     "when": "editorFocus"
   },
-  // vim commands in quick open widget
+  // Vim navigation in quick open
   {
     "key": "ctrl+j",
     "command": "workbench.action.quickOpenSelectNext",
@@ -43,11 +29,6 @@
   {
     "key": "ctrl+k",
     "command": "workbench.action.quickOpenSelectPrevious",
-    "when": "inQuickOpen"
-  },
-  {
-    "key": "ctrl+g",
-    "command": "workbench.action.closeQuickOpen",
     "when": "inQuickOpen"
   },
   // {

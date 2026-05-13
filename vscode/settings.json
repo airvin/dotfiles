@@ -1,60 +1,47 @@
 {
   "window.zoomLevel": 0,
-  // hide stupid open editors section in file explorer
+  "explorer.decorations.badges": false,
+  // hide open editors section in file explorer
   "explorer.openEditors.visible": 0,
   "editor.fontSize": 14.5,
   "editor.fontFamily": "'FiraMono Nerd Font', Menlo, Monaco, 'Courier New', monospace",
-  "workbench.colorTheme": "Atom One Dark",
   "editor.lineNumbers": "relative",
-  "workbench.iconTheme": "file-icons",
   "editor.minimap.enabled": false,
   "editor.formatOnSave": true,
-  "vsicons.dontShowNewVersionMessage": true,
-  // don't let fullscreen create a macOS desktop
-  "window.nativeFullScreen": false,
   // soft wrapping
   "editor.wordWrap": "on",
-  // "workbench.activityBar.visible": false,
+  // don't let fullscreen create a macOS desktop
+  "window.nativeFullScreen": false,
+  "workbench.colorTheme": "Atom One Dark",
   "workbench.editor.tabSizing": "shrink",
-  // don't run beautify on js file so it doesn't clash with prettier
-  "beautify.ignore": ["**/*.js", "**/*.jsx", "**/*.tsx", "**/*.ts"],
-  // multi select with alt so that cmd+click goes to def
-  "editor.multiCursorModifier": "alt",
-  // Controls if file decorations should use badges.
-  "explorer.decorations.badges": false,
-  // gitlens
-  // -------
+  
+  // Essential extensions config
   "gitlens.currentLine.enabled": false,
   "gitlens.codeLens.enabled": false,
-  "gitlens.codeLens.authors.enabled": false,
-  // Reason
-  // ------
-  // "reason.formatOnSave": true,
-  // Flow
-  // ----
-  "flow.useNPMPackagedFlow": true,
-  "javascript.validate.enable": false,
-  "flow.showStatus": false,
-  // eslint and prettier
-  "prettier.tabWidth": 4,
-  "prettier.semi": false,
-  // "prettier.tslintIntegration": true,
-  // terminal
+  
+  // Prettier
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  
+  // Terminal
   "terminal.integrated.fontSize": 14.5,
-  // vscode-icons
-  // ------------
-  "vsicons.presets.foldersAllDefaultIcon": true,
-  // ------------
-  // Vim settings
-  // ------------
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  
+  // Vim extension (if installed)
   // In normal mode, block shouldn't blink
   "editor.cursorBlinking": "solid",
   "vim.leader": "<space>",
   "vim.incsearch": true,
   "vim.hlsearch": true,
   "vim.highlightedyank.enable": true,
-  "vim.sneakReplacesF": true,
-  "vim.sneak": true,
   "vim.visualstar": true,
   "vim.insertModeKeyBindings": [
     {
@@ -62,145 +49,6 @@
       "after": ["<Esc>"]
     }
   ],
-  // Uses OS clipboard instead of unamed register
   "vim.useSystemClipboard": true,
-  "vim.normalModeKeyBindingsNonRecursive": [
-    // misc editor vim-style style bindings
-    {
-      "before": ["<leader>", "e"],
-      "commands": [
-        {
-          "command": "workbench.action.toggleSidebarVisibility"
-        }
-      ]
-    },
-    {
-      "before": ["<leader>", "f"],
-      "commands": [
-        {
-          "command": "workbench.action.quickOpen"
-        }
-      ]
-    },
-    {
-      "before": ["<leader>", "a"],
-      "commands": [
-        {
-          "command": "workbench.view.search"
-        }
-      ]
-    },
-    {
-      "before": ["<leader>", "d"],
-      "commands": [
-        {
-          "command": "workbench.actions.view.problems"
-        }
-      ]
-    },
-    {
-      "before": ["<leader>", "s"],
-      "commands": [
-        {
-          "command": "workbench.action.gotoSymbol"
-        }
-      ]
-    },
-    // scroll the viewport faster
-    {
-      "before": ["<C-e>"],
-      "after": ["3", "<C-e>"]
-    },
-    {
-      "before": ["<C-y>"],
-      "after": ["3", "<C-y>"]
-    },
-    // fix j and k to work with line wraps
-    {
-      "before": ["j"],
-      "after": ["g", "j"]
-    },
-    {
-      "before": ["k"],
-      "after": ["g", "k"]
-    },
-    // clear search highlighting
-    {
-      "before": ["leader", "/"],
-      "after": [],
-      "commands": [
-        {
-          "command": ":nohl",
-          "args": []
-        }
-      ]
-    },
-    // NERDTree Focus current file
-    {
-      "before": ["space", "n"],
-      "after": [],
-      "commands": [
-        {
-          "command": "workbench.files.action.focusFilesExplorer",
-          "args": []
-        }
-      ]
-    },
-    // save and quit commands
-    {
-      "before": ["leader", "w"],
-      "after": [],
-      "commands": [
-        {
-          "command": "workbench.action.files.save",
-          "args": []
-        }
-      ]
-    },
-    {
-      "before": ["leader", "q"],
-      "after": [],
-      "commands": [
-        {
-          "command": "workbench.action.closeActiveEditor",
-          "args": []
-        }
-      ]
-    },
-    {
-      "before": ["leader", "x"],
-      "after": [],
-      "commands": [
-        {
-          "command": ":x",
-          "args": []
-        }
-      ]
-    },
-    // vim-unimpaired binding
-    {
-      "before": ["]", "space"],
-      "after": [],
-      "commands": [
-        {
-          "command": "editor.action.insertLineAfter",
-          "args": []
-        }
-      ]
-    },
-    {
-      "before": ["[", "space"],
-      "after": [],
-      "commands": [
-        {
-          "command": "editor.action.insertLineBefore",
-          "args": []
-        }
-      ]
-    }
-  ],
-  "editor.occurrencesHighlight": false,
-  "go.formatTool": "goimports",
-  "go.useLanguageServer": true,
-  "terminal.integrated.shell.osx": "/bin/zsh"
+  "editor.occurrencesHighlight": false
 }

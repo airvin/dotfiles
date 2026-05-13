@@ -1,10 +1,5 @@
 #!/bin/bash
 
-command_exists() {
-	type "$1" > /dev/null 2>&1
-
-}
-
 echo "Symlinking dotfiles"
 source install/link.sh
 
@@ -22,15 +17,16 @@ if [ "$(uname)" == "Darwin" ]; then
   fi
 fi
 
-echo "Adding base16-shell project into .config"
-git clone https://github.com/chriskempson/base16-shell.git $HOME/.dotfiles/.config/base16-shell
-
 echo "Installing tpm (tmux package manager)"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || { echo "Failed to clone tpm"; exit 1; }
+else
+    echo "tpm already installed"
+fi
 
 
 # zsh setup
-if ! command_exists zsh; then
+if ! command -v zsh >/dev/null 2>&1; then
     echo "zsh not found. Please install and then re-run installation scripts"
     exit 1
 elif ! [[ $SHELL =~ .*zsh.* ]]; then
@@ -38,28 +34,14 @@ elif ! [[ $SHELL =~ .*zsh.* ]]; then
     chsh -s $(which zsh)
 fi
 
-echo "installing oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "Installing oh-my-zsh"
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+else
+    echo "oh-my-zsh already installed"
+fi
 
 echo "----------"
 echo "Go to keyboard settings and map caps lock to ctrl"
 echo "----------"
 echo ""
-
-# Apps
-apps=(
-  1Password 
-  BetterTouchTool 
-  Brave
-  Chrome 
-  DockerDesktop
-  IntelliJIDEA
-  Slack 
-  SourceTree
-  Signal
-  VSCode
-  Zoom
-)
-
-echo "Also think about installing the following applications:"
-printf '%s\n' "${apps[@]}"
