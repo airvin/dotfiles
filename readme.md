@@ -107,7 +107,7 @@ Scripts in `bin/` directory are added to PATH:
 ├── install/
 │   ├── link.sh            # Create symlinks
 │   ├── osx.sh             # macOS system settings
-│   └── Brewfile           # Homebrew packages
+│   ├── Brewfile           # Homebrew packages
 │   └── vscode.sh          # VS Code extensions
 ├── zsh/
 │   ├── zshrc.symlink      # Main shell configuration
@@ -134,7 +134,7 @@ After modifications, reload configurations:
 source ~/.zshrc
 
 # Neovim (inside Neovim)
-:source ~/.nvim/init.vim
+:source ~/.config/nvim/init.vim
 
 # Git
 git config --list
