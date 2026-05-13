@@ -31,7 +31,12 @@ if ! command -v zsh >/dev/null 2>&1; then
     exit 1
 elif ! [[ $SHELL =~ .*zsh.* ]]; then
     echo "Configuring zsh as default shell"
-    chsh -s $(which zsh)
+    zsh_path="$(command -v zsh)"
+    if [ -z "$zsh_path" ]; then
+        echo "Unable to determine zsh path"
+        exit 1
+    fi
+    chsh -s "$zsh_path"
 fi
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then

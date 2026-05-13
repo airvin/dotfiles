@@ -24,15 +24,14 @@ if [[ ! -d "${HOME}/.config" ]]; then
 	echo "Creating ~/.config"
 	mkdir -p "${HOME}/.config"
 fi
-# configs=$( find -path "$DOTFILES/config.symlink" -maxdepth 1 )
-for config in "$DOTFILES"/config/*; do
-	[[ -e "$config" || -L "$config" ]] || continue
-	target="${HOME}/.config/$(basename "$config")"
+nvim_config="$DOTFILES/nvim"
+if [[ -d "$nvim_config" ]]; then
+	target="${HOME}/.config/nvim"
 	if [[ -e "$target" || -L "$target" ]]; then
 		echo "~${target#$HOME} already exists... Skipping."
 	else
-		echo "Creating symlink for $config"
-		ln -s "$config" "$target"
+		echo "Creating symlink for $nvim_config"
+		ln -s "$nvim_config" "$target"
 	fi
-done
+fi
 

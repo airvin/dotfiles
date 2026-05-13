@@ -21,7 +21,7 @@ The install script will:
 - **oh-my-zsh** with essential plugins: git, vi-mode, history-substring-search
 - Vi keybindings with `jk` to escape insert mode
 - FZF for fuzzy file/history search
-- Minimal PATH configuration for Node.js and Java development
+- Minimal PATH configuration for Java development
 
 ### Editor: Neovim
 - **Purpose**: Quick terminal-based file editing (not the primary editor)
@@ -62,7 +62,7 @@ The dotfiles also symlink [git/gitignore_global.symlink](git/gitignore_global.sy
 ## Important Notes
 
 ### Language Support
-This setup is optimised for **JavaScript/Node.js** and **Java** development. Other language runtimes (Python, Ruby, Go, Rust, Haskell) have been removed. To add support for other languages:
+This setup is optimised for **Java** development. Other language runtimes (Javascript/Node, Python, Ruby, Go, Rust, Haskell) have been removed. To add support for other languages:
 - Update `install/Brewfile` with needed runtimes
 - Add appropriate PATH configurations to `zsh/zshrc.symlink`
 
@@ -123,7 +123,7 @@ Scripts in `bin/` directory are added to PATH:
 
 Edit configuration files directly:
 - **Shell aliases**: [zsh/aliases.zsh](zsh/aliases.zsh)
-- **Neovim settings**: [config/nvim/init.vim](config/nvim/init.vim)
+- **Neovim settings**: [nvim/init.vim](nvim/init.vim)
 - **Git aliases**: Manually add from [git/gitconfig.example](git/gitconfig.example) to your `~/.gitconfig`
 - **VSCode settings**: [vscode/settings.json](vscode/settings.json)
 - **Packages**: [install/Brewfile](install/Brewfile)
@@ -134,7 +134,7 @@ After modifications, reload configurations:
 source ~/.zshrc
 
 # Neovim (inside Neovim)
-:source ~/.config/nvim/init.vim
+:source ~/.nvim/init.vim
 
 # Git
 git config --list
