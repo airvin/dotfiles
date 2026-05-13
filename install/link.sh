@@ -35,3 +35,25 @@ if [[ -d "$nvim_config" ]]; then
 	fi
 fi
 
+echo
+echo "Installing VS Code settings"
+echo "=============================="
+vscode_config_dir="$DOTFILES/vscode"
+vscode_user_dir="$HOME/Library/Application Support/Code/User"
+if [[ -d "$vscode_config_dir" ]]; then
+	mkdir -p "$vscode_user_dir"
+	for file in settings.json keybindings.json; do
+		source_file="$vscode_config_dir/$file"
+		target="$vscode_user_dir/$file"
+		if [[ ! -e "$source_file" ]]; then
+			continue
+		fi
+		if [[ -e "$target" || -L "$target" ]]; then
+			echo "~${target#$HOME} already exists... Skipping."
+		else
+			echo "Creating symlink for $source_file"
+			ln -s "$source_file" "$target"
+		fi
+	done
+fi
+

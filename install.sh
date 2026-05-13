@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -euo pipefail
+
+DOTFILES="${HOME}/.dotfiles"
+
 echo "Symlinking dotfiles"
 source install/link.sh
 
@@ -44,6 +48,13 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 else
     echo "oh-my-zsh already installed"
+fi
+
+echo "Installing VS Code extensions"
+if command -v code >/dev/null 2>&1; then
+    source install/vscode.sh
+else
+    echo "VS Code CLI not found - skipping extensions. Open VS Code and install the 'code' shell command, then re-run install.sh."
 fi
 
 echo "----------"
