@@ -119,7 +119,7 @@ Scripts in `bin/` directory are added to PATH:
 │   ├── tmux.conf.symlink           # Tmux configuration
 │   └── theme.sh                    # Tmux theme
 ├── bin/
-│   └── tm.sh                       # tm binary
+│   └── tm                          # tm binary
 ├── git/
 │   ├── gitconfig.example           # gitconfig example (manual setup)
 │   └── gitignore_global.symlink    # global gitignore configuration
