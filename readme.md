@@ -95,7 +95,7 @@ Scripts in `bin/` directory are added to PATH:
 
 1. **Development**: IntelliJ IDEA or VS Code
 2. **Terminal**: Tmux with ZSH for command line work
-3. **Quick edits**: Neovim in terminal (`:` key in tmux to edit files)
+3. **Quick edits**: Neovim in terminal
 4. **File navigation**: FZF (`Ctrl+T` in shell or `<leader>f` in Neovim)
 5. **Git operations**: Git aliases or integrations in IDE
 
@@ -103,20 +103,29 @@ Scripts in `bin/` directory are added to PATH:
 
 ```
 .dotfiles/
-├── install.sh              # Main installation script
+├── install.sh                      # Main installation script
 ├── install/
-│   ├── link.sh            # Create symlinks
-│   ├── osx.sh             # macOS system settings
-│   ├── Brewfile           # Homebrew packages
-│   └── vscode.sh          # VS Code extensions
+│   ├── link.sh                     # Create symlinks
+│   ├── osx.sh                      # macOS system settings
+│   ├── Brewfile                    # Homebrew packages
+│   └── vscode.sh                   # VS Code extensions
 ├── zsh/
-│   ├── zshrc.symlink      # Main shell configuration
-│   └── aliases.zsh        # Command aliases
+│   ├── zshrc.symlink               # Main shell configuration
+│   └── aliases.zsh                 # Command aliases
 ├── nvim/
-│   └── init.vim           # Neovim configuration
-├── tmux/tmux.conf.symlink # Tmux configuration
-├── git/gitconfig.example  # Git aliases (manual setup)
-└── vscode/                # VS Code settings
+│   ├── init.vim                    # Neovim configuration
+│   └── autoload/plug.vim           # Neovim plugin manager
+├── tmux/ 
+│   ├── tmux.conf.symlink           # Tmux configuration
+│   └── theme.sh                    # Tmux theme
+├── bin/
+│   └── tm.sh                       # tm binary
+├── git/
+│   ├── gitconfig.example           # gitconfig example (manual setup)
+│   └── gitignore_global.symlink    # global gitignore configuration
+└── vscode/                         
+    ├── keybindings.json            # VS Code keybindings
+    └── settings.json               # VS Code settings
 ```
 
 ## Customisation
