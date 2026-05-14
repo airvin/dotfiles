@@ -33,19 +33,15 @@ fi
 if ! command -v zsh >/dev/null 2>&1; then
     echo "zsh not found. Please install and then re-run installation scripts"
     exit 1
-elif ! [[ $SHELL =~ .*zsh.* ]]; then
+elif ! [[ ${SHELL:-} =~ .*zsh.* ]]; then
     echo "Configuring zsh as default shell"
     zsh_path="$(command -v zsh)"
-    if [ -z "$zsh_path" ]; then
-        echo "Unable to determine zsh path"
-        exit 1
-    fi
     chsh -s "$zsh_path"
 fi
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Installing oh-my-zsh"
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" --unattended
 else
     echo "oh-my-zsh already installed"
 fi

@@ -39,8 +39,19 @@ echo
 echo "Installing VS Code settings"
 echo "=============================="
 vscode_config_dir="$DOTFILES/vscode"
-vscode_user_dir="$HOME/Library/Application Support/Code/User"
-if [[ -d "$vscode_config_dir" ]]; then
+case "$(uname)" in
+	Darwin)
+		vscode_user_dir="$HOME/Library/Application Support/Code/User"
+		;;
+	Linux)
+		vscode_user_dir="$HOME/.config/Code/User"
+		;;
+	*)
+		vscode_user_dir=""
+		;;
+esac
+
+if [[ -d "$vscode_config_dir" && -n "$vscode_user_dir" ]]; then
 	mkdir -p "$vscode_user_dir"
 	for file in settings.json keybindings.json; do
 		source_file="$vscode_config_dir/$file"
@@ -55,5 +66,7 @@ if [[ -d "$vscode_config_dir" ]]; then
 			ln -s "$source_file" "$target"
 		fi
 	done
+elif [[ -d "$vscode_config_dir" ]]; then
+	echo "Unsupported OS for automatic VS Code settings install... Skipping."
 fi
 
