@@ -2,7 +2,7 @@
 # https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
 
 # tm_color_active='#d19a66' # onedark 'yellow'
- tm_color_active=colour198 # nisi magenta
+tm_color_active=colour198 # nisi magenta
 tm_color_inactive=colour241 # grey
 tm_color_feature='#61afef' # onedark 'blue'
 # tm_active_border_color=colour198 # nisi magenta
@@ -45,3 +45,4 @@ tm_host="#[fg=$tm_color_feature,bold]#h"
 tm_session_name="#[fg=$tm_color_feature,bold] #S"
 
 set -g status-left $tm_session_name' '
+set -g status-right $tm_host' '$tm_date

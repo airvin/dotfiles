@@ -1,14 +1,9 @@
 aliases-local.zsh
 settings-local.zsh
 local.zsh
-.config
+
+# Vim history file
 .netrwhist
 
 config/nvim/plugged
 config/nvim/projects.txt
-config/oni/plugged
-config/oni/config.js
-config/brittany
-config/nnn
-!config/nnn/plugins/fzfz
-

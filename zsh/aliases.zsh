@@ -1,9 +1,3 @@
-# misc aliases
-
-# docker
-alias dc='docker-compose'
-alias lzd='lazydocker'
-
 # neovim
 alias vim='nvim'
 
